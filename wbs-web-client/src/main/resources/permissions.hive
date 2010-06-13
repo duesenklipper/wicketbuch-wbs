@@ -1,0 +1,35 @@
+grant
+{
+    permission ${ComponentPermission} "${home}", "render, enable";
+};
+
+grant principal org.apache.wicket.security.hive.authorization.SimplePrincipal "TASK_WORKER"
+{
+    permission ${ComponentPermission} "${project}", "inherit, render, enable";
+    permission ${ComponentPermission} "${settings}", "inherit, render, enable";
+    permission ${ComponentPermission} "${tasks}", "inherit, render, enable";
+};
+
+grant principal org.apache.wicket.security.hive.authorization.SimplePrincipal "TASK_ADMIN"
+{
+
+};
+
+grant principal org.apache.wicket.security.hive.authorization.SimplePrincipal "PROJECT_ADMIN"
+{
+    permission ${ComponentPermission} "${stats}", "inherit, render, enable";
+    permission ${ComponentPermission} "${map}", "inherit, render, enable";
+};
+
+grant principal org.apache.wicket.security.hive.authorization.SimplePrincipal "USER_ADMIN"
+{
+    permission ${ComponentPermission} "${user}", "inherit, render, enable";
+    permission ${ComponentPermission} "${useredit}", "inherit, render, enable";
+    permission ${ComponentPermission} "${listRoles}", "inherit, render, enable";
+    permission ${ComponentPermission} "${createUser}", "inherit, render, enable";
+    permission ${ComponentPermission} "${createUser1}", "inherit, render, enable";
+    permission ${ComponentPermission} "${createUser2}", "inherit, render, enable";
+    permission ${ComponentPermission} "${createUser3}", "inherit, render, enable";
+    permission ${ComponentPermission} "${jmx}", "inherit, render, enable";
+};
+

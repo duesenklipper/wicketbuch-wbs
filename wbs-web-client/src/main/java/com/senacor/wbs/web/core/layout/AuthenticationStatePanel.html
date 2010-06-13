@@ -1,0 +1,64 @@
+<!--
+
+    Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html 
+  xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:wicket="http://wicket.sourceforge.net/" 
+  xml:lang="en" 
+  lang="en">  
+<body>
+  <wicket:panel>
+        	<div wicket:id="login"></div>
+        	<wicket:fragment wicket:id="loginFragment">
+				<form id="loginForm" method="post" wicket:id="loginForm" title="Bitte melden Sie sich mit Username/Passwort an." showtooltip="true">
+						<table>
+							<tbody>
+								<tr>
+									<td align="right"><wicket:message key="username"/></td>
+									<td><input showtooltip="true" title="Username ist ein Pflichtfeld" tabindex="1" type="text" id="username" wicket:id="username" /></td>
+								</tr>
+								<tr>
+									<td align="right"><wicket:message key="password"/></td>
+									<td><input tabindex="2" type="password" id="password" wicket:id="password" /></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+									<input type="submit" value="Login" wicket:message="value:submitLoginValue,title:submitLoginTitle"/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				</form>
+	        </wicket:fragment>
+            
+        	<div wicket:id="logout"></div>
+            <wicket:fragment wicket:id="logoutFragment">
+          		| <a href="#" wicket:id="logoutLink" >Logout</a>
+          		<div>&nbsp;</div>
+          		<div>
+          			<p><wicket:message key="logged.in.pre.label">angemeldet seit</wicket:message> <span wicket:id="loggedInDuration"/> <wicket:message key="logged.in.post.label">Minuten</wicket:message>: <span wicket:id="vorname"/> <span wicket:id="name"/></p>
+          		</div>
+            </wicket:fragment>
+            
+  </wicket:panel>
+</body>
+</html>

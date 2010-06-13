@@ -1,0 +1,103 @@
+<!--
+
+    Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html 
+  xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:wicket="http://wicket.sourceforge.net/" 
+  xml:lang="en" 
+  lang="en">  
+<head>
+	<wicket:head>
+		<style>
+			div.wicket-aa {
+				font-family: "Lucida Grande","Lucida Sans Unicode",Tahoma,Verdana;
+				font-size: 12px;
+				background-color: white;
+				border-width: 1px;
+				border-color: #cccccc;
+				border-style: solid;
+				padding: 2px;
+				margin: 1px 0 0 0;
+				text-align:left;
+			}
+			div.wicket-aa ul { list-style:none; padding: 2px; margin:0; }
+			div.wicket-aa ul li.selected { background-color: #FFFF00; padding: 2px; margin:0; }
+		</style>
+	</wicket:head>
+</head>
+<body>
+  <wicket:panel>
+	<div wicket:id="border">
+	<div class="formbox">
+	<form wicket:id="userIndexForm">
+ 	<div class="subcolumns"> 
+  	
+  	<div class="c50l">
+  		<div class="subcl"> 
+      		<!-- Inhalt linker Block --> 
+      		<div class="row"><span class="label"><wicket:message key="fulltextsearch"/>:</span><span class="field"><input type="text" wicket:id="kriterien" /></span></div>
+      		<div class="row"><span class="field"></span></div>
+    	</div> 
+  	</div>
+
+ 	</div>
+ 	</form>
+	</div>
+	<div class="formbox">
+	<form wicket:id="userForm">
+  	
+  	<!-- Subtemplate: 2 Spalten mit 50/50 Teilung -->
+  	<div class="subcolumns"> 
+  	
+  	<div class="c50l">
+  		<div class="subcl"> 
+      		<!-- Inhalt linker Block --> 
+      		<div class="row"><span class="label"><wicket:message key="vorname"/>:</span><span class="field"><input type="text" wicket:id="vorname" /></span></div>
+      		<div class="row"><span class="label">Username:</span><span class="field"><input type="text" wicket:id="username" /></span></div>
+    	</div> 
+  	</div> 
+ 
+  	<div class="c50r"> 
+    	<div class="subcr"> 
+      		<!-- Inhalt rechter Block --> 
+      		<div class="row"><span class="label"><wicket:message key="name"/>:</span><span class="field"><input type="text" wicket:id="name" /></span></div>
+			<div class="button"><input wicket:id="search" type="submit" wicket:message="value:search.button.label" /></div>
+    	</div> 
+  	</div> 
+	
+	</div>
+	</form>
+	</div>
+	
+	<div class="formbox">
+  		<div class="subcolumns"> 
+  		  	<div class="c99l">
+  				<div class="subcl"> 
+      				<div class="row"><span class="field"><wicket:message key="not.found"/> <a wicket:id="createUser" href="#"><wicket:message key="create.new.label">Hier neu anlegen</wicket:message></a></span></div>
+      				<div class="row"><span class="field"></span></div>
+      			</div>
+			</div>
+		</div>
+	</div>
+</div>	
+  </wicket:panel>
+</body>
+</html>

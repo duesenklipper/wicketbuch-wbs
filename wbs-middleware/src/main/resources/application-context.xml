@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sa="http://sannotations.sourceforge.net/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" default-autowire="byName"
+	xsi:schemaLocation="  
+ http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd  
+ http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd  
+ http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://sannotations.sourceforge.net/context http://sannotations.sourceforge.net/context.xsd">
+
+	<bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:application-context.properties" />
+		<property name="systemPropertiesMode" value="2" />
+	</bean>
+
+	<bean id="matchAll" class="org.springframework.transaction.interceptor.MatchAlwaysTransactionAttributeSource">
+		<property name="transactionAttribute">
+			<value>PROPAGATION_REQUIRED</value>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="transactionInterceptor" lazy-init="true"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionAttributeSource" ref="matchAll" />
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<!-- H2 -->
+		<!-- <property name="configLocation" value="classpath:h2.hibernate.cfg.xml" /> -->
+		<!-- die Hibernate-Properties werden hier direkt konfiguriert, anstatt ueber das Property configLocation 
+		     auf ein hibernate.cfg.xml zu verweisen. Der Vorteil ist, dass mit PropertyPlaceholderConfigurer
+		     systemabhängige Parameter wie z.B. hibernate.search.default.indexBase über System Properties
+		     spezifiziert werden können -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.driver_class">org.h2.Driver</prop>
+				<prop key="hibernate.connection.password"></prop>
+				<prop key="hibernate.connection.url">jdbc:h2:file:target/db/staffit</prop>
+				<prop key="hibernate.connection.username">sa</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+				<prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses" ref="annotatedClasses" />
+	</bean>
+
+	<bean id="annotatedClasses" class="java.util.LinkedList">
+		<constructor-arg>
+			<list>
+				<value>com.senacor.domain.user.User</value>
+				<value>com.senacor.domain.user.Address</value>
+				<value>com.senacor.domain.user.ContactData</value>
+				<value>com.senacor.domain.user.Role</value>
+				<value>com.senacor.domain.user.Principal</value>
+				<value>com.senacor.domain.project.Project</value>
+				<value>com.senacor.domain.project.Task</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="removeHibernateLazyLoadingProxiesInterceptor" class="com.senacor.core.hibernate.RemoveHibernateLazyLoadingProxiesInterceptor" />
+
+	<bean id="managerInterceptorTemplate" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+		<property name="interceptorNames">
+			<list>
+<!-- <value>removeHibernateLazyLoadingProxiesInterceptor</value>  -->
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- AuthenticationManager -->
+	<bean id="authenticationManager" parent="managerInterceptorTemplate">
+		<property name="target" ref="authenticationManagerImpl" />
+		<property name="proxyInterfaces" value="com.senacor.domain.security.AuthenticationManager" />
+	</bean>
+	<bean id="authenticationManagerImpl" class="com.senacor.domain.security.AuthenticationManagerImpl" />
+
+	<!-- User -->
+	<bean id="userManager" parent="managerInterceptorTemplate">
+		<property name="target" ref="userManagerImpl" />
+		<property name="proxyInterfaces" value="com.senacor.domain.user.UserManager" />
+	</bean>
+	<bean id="userManagerImpl" class="com.senacor.domain.user.UserManagerImpl" />
+
+	<!-- Role -->
+	<bean id="roleManager" parent="managerInterceptorTemplate">
+		<property name="target" ref="roleManagerImpl" />
+		<property name="proxyInterfaces" value="com.senacor.domain.user.RoleManager" />
+	</bean>
+	<bean id="roleManagerImpl" class="com.senacor.domain.user.RoleManagerImpl" />
+
+	<!-- Principal -->
+	<bean id="principalManager" parent="managerInterceptorTemplate">
+		<property name="target" ref="principalManagerImpl" />
+		<property name="proxyInterfaces" value="com.senacor.domain.user.PrincipalManager" />
+	</bean>
+	<bean id="principalManagerImpl" class="com.senacor.domain.user.PrincipalManagerImpl" />
+
+	<!-- Projekte -->
+	<bean id="projectManager" parent="managerInterceptorTemplate">
+		<property name="target" ref="projectManagerImpl" />
+		<property name="proxyInterfaces" value="com.senacor.domain.project.ProjectManager" />
+	</bean>
+	<bean id="projectManagerImpl" class="com.senacor.domain.project.ProjectManagerImpl" />
+	<bean id="taskManager" parent="managerInterceptorTemplate">
+		<property name="target" ref="taskManagerImpl" />
+		<property name="proxyInterfaces" value="com.senacor.domain.project.TaskManager" />
+	</bean>
+	<bean id="taskManagerImpl" class="com.senacor.domain.project.TaskManagerImpl" />
+
+</beans>
+

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.senacor</groupId>
+	<artifactId>wicket-wbs</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>WorkBreakdownStructure</name>
+
+	<description>Implementierung der WorkBreakdownStructure in Wicket</description>
+	<developers>
+		<developer>
+			<id/>
+			<name>Roland Förther</name>
+			<email>rfoerther@wicketbuch.de</email>
+			<url/>
+			<organization>Wicketbuch</organization>
+			<organizationUrl>http://www.wicketbuch.de</organizationUrl>
+			<timezone/>
+			<properties/>
+		</developer>
+		<developer>
+			<id/>
+			<name>Carl-Eric Menzel</name>
+			<email>cmenzel@wicketbuch.de</email>
+			<url/>
+			<organization>Wicketbuch</organization>
+			<organizationUrl>http://www.wicketbuch.de</organizationUrl>
+			<timezone/>
+			<properties/>
+		</developer>
+		<developer>
+			<id/>
+			<name>Olaf Siefart</name>
+			<email>osiefart@wicketbuch.de</email>
+			<url/>
+			<organization>Wicketbuch</organization>
+			<organizationUrl>http://www.wicketbuch.de</organizationUrl>
+			<timezone/>
+			<properties/>
+		</developer>
+	</developers>
+
+	<modules>    
+		<module>wbs-middleware</module>    
+		<module>wbs-web-client</module>    
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.0.8</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<wtpversion>1.5</wtpversion>
+					<downloadSources>true</downloadSources>
+					<additionalProjectnatures>
+						<projectnature> wicketbench.wicketnature </projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand> wicketbench.associatedMarkupAuditor </buildcommand>
+					</additionalBuildcommands>
+					<additionalProjectnatures>
+						<projectnature> org.springframework.ide.eclipse.core.springnature
+						</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand> org.springframework.ide.eclipse.core.springbuilder
+						</buildcommand>
+					</additionalBuildcommands>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<outputEncoding>UTF-8</outputEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-4</version>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly-bin.xml</descriptor>
+						<descriptor>assembly-project.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<configuration>
+					<basedir>${basedir}</basedir>
+					<header>${basedir}/etc/header.txt</header>
+					<quiet>false</quiet>
+					<failIfMissing>true</failIfMissing>
+					<aggregate>true</aggregate>
+					<includes>
+						<include>**/src/**</include>
+						<include>**/test/**</include>
+					</includes>
+					<excludes>
+						<exclude>etc/**</exclude>
+						<exclude>**/streets.txt</exclude>
+						<exclude>**/import.sql</exclude>
+						<exclude>**/permissions.hive</exclude>
+						<exclude>**/src/main/doc/yaml_304_071127/**</exclude>
+						<exclude>**/src/main/webapp/yaml/**</exclude>
+						<exclude>**/src/main/webapp/css/**</exclude>
+						<exclude>**/ydoc_304_de_071130.pdf</exclude>
+						<exclude>**/sweetTitles.css</exclude>
+						<exclude>**/sweetTitles.js</exclude>
+						<exclude>**/*.properties</exclude>
+						<exclude>**/*.css</exclude>					
+					</excludes>
+					<useDefaultExcludes>true</useDefaultExcludes>
+					<properties>
+						<year>${project.inceptionYear}</year>
+						<email>my@email.com</email>
+					</properties>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>			
+
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>wicket-snaps</id>
+			<url>http://wicketstuff.org/maven/repository</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+</project>

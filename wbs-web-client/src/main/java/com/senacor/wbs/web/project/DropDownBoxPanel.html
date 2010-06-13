@@ -1,0 +1,50 @@
+<!--
+
+    Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html 
+  xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:wicket="http://wicket.sourceforge.net/" 
+  xml:lang="en" 
+  lang="en">  
+<body>
+
+<wicket:head>
+    <style>
+        input.edit-cell {
+            width: 100%; 
+            margin: 0px;
+            font-size: 100%; 
+            background-color: white; 
+            color:  black; 
+            border: 1px solid black; 
+            
+            _position: relative; _top: -1px;                    
+        }
+            
+    </style>
+</wicket:head>
+
+<wicket:panel>
+    <select wicket:id="dropDown"><option>in work</option><option>finished</option></select>
+</wicket:panel>
+
+</body>
+</html>

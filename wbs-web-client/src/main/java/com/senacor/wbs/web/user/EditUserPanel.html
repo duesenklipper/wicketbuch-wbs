@@ -1,0 +1,193 @@
+<!--
+
+    Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.sourceforge.net/" xml:lang="en" lang="en">
+<body>
+<wicket:head>
+	<style type="text/css">
+#rundrum {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #4D87C7;
+	padding: 2.5em;
+	text-align: justify;
+}
+</style>
+
+</wicket:head>
+<wicket:panel>
+
+	<div wicket:id="border"><div wicket:id="changePasswordPanel"
+		style="padding: 5px 5px" /></div>
+
+	<div wicket:id="border2">
+	<form wicket:id="userForm">
+
+	<div class="subcolumns">
+	<div class="c50l">
+	<div class="subcl">
+		<div wicket:id="borderPerson1" >
+		<div class="subcolumns">
+		<div class="c33l">
+		<div class="subcl">
+ 			Vorname:
+		</div>
+		</div>
+		<div class="c66l">
+		<div class="subcr">
+			<input type="text" wicket:id="vorname" maxlength="8" style="width: 80%" />
+		</div>
+		</div>
+		</div>
+		<div class="subcolumns">
+		<div class="c33l">
+		<div class="subcl">
+			Name:
+		</div>
+		</div>
+		<div class="c66l">
+		<div class="subcr">
+			<input type="text" wicket:id="name" style="width: 80%" />
+		</div>
+		</div>
+		</div>
+		<div class="subcolumns">
+		<div class="c33l">
+		<div class="subcl">
+			Geburtsdatum:
+		</div>
+		</div>
+		<div class="c66l">
+		<div class="subcr">
+			<input type="text" wicket:id="birthDate" style="width: 60%" maxlength="8"/>
+		</div>
+		</div>
+		</div>
+		<div class="subcolumns">
+		<div class="c33l">
+		<div class="subcl">
+			Geschlecht:
+		</div>
+		</div>
+		<div class="c66l">
+		<div class="subcr">
+			<span wicket:id="gender">
+				<input type="radio" />Männlich
+				<input type="radio" />Weiblich
+			</span>
+		</div>
+		</div>
+		</div>
+		<div class="subcolumns">
+		<div class="c33l">
+		<div class="subcl">
+			Familienstand:
+		</div>
+		</div>
+		<div class="c66l">
+		<div class="subcr">
+			<select wicket:id="maritalStatus" size="3">
+				<option>Verheiratet</option>
+				<option>Ledig</option>
+			</select>
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	<div class="c50r">
+	<div class="subcr">
+		<div wicket:id="borderPerson2">
+		<div class="subcolumns">
+		<div class="c25l">
+		<div class="subcl">
+			<img height="80" wicket:id="foto" />
+		</div>
+		</div>
+		<div class="c75r">
+		<div class="subcr">
+			<input wicket:id="fotoUpload" id="upload" type="file" />
+		</div>
+		</div>
+		</div>
+		<div class="subcolumns">
+		<div class="c50l">
+		<div class="subcl">
+			Senacor-Mitarbeiter
+		</div>
+		</div>
+		<div class="c50r">
+		<div class="subcr">
+			<input type="checkbox" wicket:id="senacorEmployee" />
+		</div>
+		</div>
+		</div>
+		<div class="subcolumns">
+		<div class="c50l">
+		<div class="subc">
+       		Kompetenz:
+		</div>
+		</div>
+		<div class="c50r">
+		<div class="subcr">
+			<span wicket:id="knowledges"> <input
+				type="checkbox" value="Java" /> <input type="checkbox" value="JEE" /></span>
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<div class="subcolumns">
+	<div class="c50l">
+	<div class="subcl">
+	<div wicket:id="addressPanel" />
+	</div>
+	</div>
+	<div class="c50r">
+	<div class="subcr">
+	<div wicket:id="contactDataPanel" />
+	</div>
+	</div>
+	</div>
+
+	<table>
+		<tr>
+			<td width="90%"></td>
+			<td></td>
+			<td><span wicket:id="progress">[[uploadprogressbar]]</span>
+			</td>
+			<td><input wicket:id="Speichern" type="submit" value="Speichern" /></td>
+		</tr>
+	</table>
+
+
+
+	</form>
+	</div>
+
+</wicket:panel>
+</body>
+</html>

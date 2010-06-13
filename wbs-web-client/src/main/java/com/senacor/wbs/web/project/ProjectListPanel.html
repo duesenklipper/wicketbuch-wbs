@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright 2009 Roland Foerther, Carl-Eric-Menzel, Olaf Siefart
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.sourceforge.net/" xml:lang="en" lang="en">
+<body>
+
+<wicket:panel>
+	<table>
+		<tr>
+			<th>
+			<form wicket:id="localeForm">
+			<input type="image" wicket:id="langde"/>
+			<input type="image" wicket:id="langus"/>
+			</form>
+			<a style="padding: 0px" href="#" wicket:id="pdfDownload" title="Download project list as PDF"><wicket:link><img src="res/acrobat1.png"/></wicket:link></a>
+			<a style="padding: 0px" href="#" wicket:id="pdfPopup" title="View project list as PDF"><wicket:link><img src="res/acrobat2.png"/></wicket:link></a>
+			<a style="padding: 0px" href="#" wicket:id="pdfReqTarget" title="Download project list as PDF via ReqTarget"><wicket:link><img src="res/acrobat3.png"/></wicket:link></a>
+			</th>
+			<th>ID</th>
+			<th wicket:id="orderByKuerzel">Key</th>
+			<th wicket:id="orderByName">Title</th>
+			<th wicket:id="orderByBudget">Budget in Days</th>
+		  <th wicket:id="orderByCostPerHour">Cost / h</th>
+			<th wicket:id="orderByStart">Started</th>
+			<th wicket:id="orderByEnde">Finished</th>
+			<th wicket:id="orderByState">State</th>
+		</tr>
+		<tr class="odd" wicket:id="projects">
+			<td></td>
+			<td align="right"><a wicket:id="tasks"><span wicket:id="id"></span></a></td>
+			<td><span wicket:id="kuerzel"></span></td>
+			<td width="200px"><span wicket:id="titel"></span></td>
+			<td align="right"><span wicket:id="budget"></span></td>
+			<td align="right"><span wicket:id="costPerHour"></span></td>
+			<td><span wicket:id="start"></span></td>
+			<td><span wicket:id="ende"></span></td>
+			<td><span wicket:id="state"></span></td>
+		</tr>
+	</table>
+	<div wicket:id="projectsNavigator" />
+</wicket:panel>
+</body>
+</html>
