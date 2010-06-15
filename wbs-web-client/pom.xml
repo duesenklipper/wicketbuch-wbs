@@ -20,7 +20,7 @@
 	<parent>
 		<groupId>com.senacor</groupId>
 		<artifactId>wicket-wbs</artifactId>
-		<version>1.0</version>
+		<version>1.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<name>WBSWeb</name>

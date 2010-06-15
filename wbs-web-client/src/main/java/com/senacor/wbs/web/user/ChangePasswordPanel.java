@@ -37,10 +37,10 @@ public class ChangePasswordPanel extends Panel {
  private UserManager userManager;
  private ChangePasswordForm changePasswortForm;
 
- public ChangePasswordPanel(String id, User user) {
+ public ChangePasswordPanel(String id, User user, boolean isAdmin) {
   super(id);
   changePasswortForm =
-    new ChangePasswordForm("changePasswortForm", user);
+    new ChangePasswordForm("changePasswortForm", user, isAdmin);
   add(changePasswortForm);
  }
 
@@ -49,10 +49,12 @@ public class ChangePasswordPanel extends Panel {
   private String newPassword1 = "";
   private String newPassword2 = "";
   private User user;
+  private final boolean isAdmin;
 
-  public ChangePasswordForm(String id, User user) {
+  public ChangePasswordForm(String id, User user, boolean isAdmin) {
    super(id);
    this.user = user;
+   this.isAdmin = isAdmin;
 
    ContentLayout subLayout1 = new ContentLayout("sublayout1");
    add(subLayout1);
@@ -73,7 +75,7 @@ public class ChangePasswordPanel extends Panel {
      new LayoutColumn("colOldPwd", ColumnType.c25l, Position.LEFT);
    column1.add(new PasswordTextField("oldPassword",
      new PropertyModel<String>(this, "oldPassword"))
-     .setRequired(true));
+     .setRequired(!isAdmin).setEnabled(!isAdmin));
    subLayout2.add(column1);
 
    LayoutColumn column2 =
@@ -108,7 +110,7 @@ public class ChangePasswordPanel extends Panel {
 
   @Override
   protected void onSubmit() {
-   if (!user.getPasswort().equals(oldPassword)) {
+   if (!isAdmin && !user.getPasswort().equals(oldPassword)) {
     error("Das eingegebene alte Passwort ist nicht korrekt");
    } else {
     user.setPasswort(newPassword1);

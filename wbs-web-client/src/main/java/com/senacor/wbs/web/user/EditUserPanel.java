@@ -56,7 +56,7 @@ public class EditUserPanel extends Panel {
 	public EditUserPanel(String id) {
 		super(id);
 		User user = userManager.retrieve(WBSSession.get().getUser().getId());
-		add(new ToggleBorder("border", new Model("Passwort ändern")).add(new ChangePasswordPanel("changePasswordPanel", user)));
+		add(new ToggleBorder("border", new Model("Passwort ändern")).add(new ChangePasswordPanel("changePasswordPanel", user, false)));
 		userForm = new UserForm("userForm", user);
 		add(new ToggleBorder("border2", new Model("Stammdaten ändern")).add(userForm));
 	}
