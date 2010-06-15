@@ -22,7 +22,9 @@
 	<packaging>pom</packaging>
 
 	<name>WorkBreakdownStructure</name>
-
+	<scm>
+	  <developerConnection>scm:git:ssh://tausendmasken.de/git/wicket-wbs.git</developerConnection>
+	</scm>
 	<description>Implementierung der WorkBreakdownStructure in Wicket</description>
 	<developers>
 		<developer>
